@@ -1,8 +1,8 @@
-fastapi==0.68.0
-uvicorn==0.15.0
-python-multipart==0.0.5
-pillow==8.3.2
-tensorflow==2.7.0
-pydantic==1.8.2
-numpy==1.19.5
-google-cloud-storage==1.42.0
+fastapi
+uvicorn
+python-multipart
+pillow
+tensorflow
+pydantic
+numpy
+google-cloud-storage
