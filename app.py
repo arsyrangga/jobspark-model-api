@@ -105,7 +105,7 @@ def process_image(image_data: bytes) -> np.ndarray:
     
     return img_array
 
-@app.post("/predict/", response_model=PredictionResponse)
+@app.post("/predict", response_model=PredictionResponse)
 async def predict(file: UploadFile = File(...)):
     """Endpoint to predict class for uploaded image"""
     try:
