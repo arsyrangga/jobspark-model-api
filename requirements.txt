@@ -6,3 +6,4 @@ tensorflow
 pydantic
 numpy
 google-cloud-storage
+google-auth

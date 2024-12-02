@@ -9,6 +9,13 @@ import uvicorn
 from pydantic import BaseModel
 from typing import Dict
 import tensorflow as tf
+from google.cloud import storage
+from google.oauth2 import service_account
+
+bucket_name = os.environ['BUCKET_NAME']
+model_blob_name = os.environ['MODEL_BLOB_NAME']
+local_model_path = os.environ['LOCAL_MODEL_PATH']
+service_account_path = os.environ['SERVICE_ACCOUNT_PATH']
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -17,9 +24,45 @@ app = FastAPI(
     version="1.0.0"
 )
 
+def download_model_from_gcs(
+    bucket_name: str,
+    model_blob_name: str,
+    local_model_path: str,
+    service_account_path: str
+):
+    """Download model from GCS using service account credentials"""
+    
+    # Initialize credentials
+    credentials = service_account.Credentials.from_service_account_file(
+        service_account_path,
+        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    )
+    
+    # Create storage client with service account
+    storage_client = storage.Client(credentials=credentials)
+    
+    # Get bucket and download model
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(model_blob_name)
+    blob.download_to_filename(local_model_path)
+    
+    return local_model_path
+
+
 # Global variables
-MODEL_PATH = "ModelCNN2.h5"
+MODEL_PATH = "model_transfer_downsyndrome.keras"
 LABELS = {0: "Syndrome", 1: "Healthy"}
+
+
+
+if not os.path.exists("model_transfer_downsyndrome.keras"):
+    print("Downloading model from GCS...")
+    download_model_from_gcs(
+    bucket_name,
+    model_blob_name,
+    local_model_path,
+    service_account_path
+)
 
 # Load model at startup
 print(f"Loading model from {MODEL_PATH}")
