@@ -2,8 +2,10 @@ fastapi
 uvicorn
 python-multipart
 pillow
-tensorflow
-pydantic
 numpy
+pandas
+tensorflow
+scikit-learn
 google-cloud-storage
-google-auth
+pydantic
+python-dotenv

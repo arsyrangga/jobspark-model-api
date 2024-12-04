@@ -2,3 +2,10 @@ Dockerfile
 dockerfile
 service-account.json
 model_transfer_downsyndrome.keras
+model_sisrek_jobspark.h5
+dataset.csv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python

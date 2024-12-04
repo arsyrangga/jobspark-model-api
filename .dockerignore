@@ -1,0 +1,45 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.env
+
+# Development
+.vscode/
+*.log
+*.swp
+.DS_Store
+
+# Tests
+tests/
+test/
+*/test*/
+
+# Local development files
+local/
+*.local
+*.dev
+
+# Documentation
+README.md
+docs/
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Other
+*.pkl
+*.h5
+*.keras
+*.model
+credentials.json
+*.key
