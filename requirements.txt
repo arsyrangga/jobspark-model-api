@@ -9,3 +9,4 @@ scikit-learn
 google-cloud-storage
 pydantic
 python-dotenv
+google-auth
